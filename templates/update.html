@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+Task List
+{% endblock %}
+{% block content %}
+<h1>Task Update</h1>
+<form method="post" action="{{ url_for('update') }}">
+  <input type="hidden" id="custId" name="id" value="{{ task.id }}"> 
+	<p><input name="task" type="text" value="{{ task.task }}"></p>
+	<input type="submit" value="Update">
+</form>
+{% endblock %}

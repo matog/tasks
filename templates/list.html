@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}
+Task List
+{% endblock %}
+{% block content %}
+<h1>Task List</h1>
+{% with messages = get_flashed_messages(with_categories=True) %}
+	{% if messages %}
+		{% for category, message in messages %}
+		<div class ="{{ category }}">
+			{{ message }}
+		</div>
+
+		{% endfor%}
+	{% endif%}
+{% endwith%}
+<h3>To Do Tasks</h3>
+<table class="table table-striped">
+ <tr>
+	 <th>ID</th>
+	 <th>TASK</th>
+	 <th>CREATED ON</th>
+	 <th colspan = "3">ACTIONS</th>
+
+ </tr>
+ <tr>
+  {% for task in task %}
+		{% if task.status == 1 %}
+		  <td>{{ task.id }}</td>
+			<td>{{ task.task }}</td>
+			<td>{{ task.created_on.day }} / {{ task.created_on.month }} /{{ task.created_on.year }}</td>
+			<td><a href="/update/{{ task.id }}">Update</a></td>
+			<td><a href="/delete/{{ task.id }}">Delete</a></td>
+			<td><a href="/done/{{ task.id }}">Done</a></td>
+</tr>
+		{% endif %}
+	{% endfor %}
+ </table>
+
+<br>
+<h3>Done Tasks</h3>
+
+<table class="table table-striped">
+ <tr>
+	 <th>ID</th>
+	 <th>TASK</th>
+	 <th>CREATED ON</th>
+	 <th colspan = "3">ACTIONS</th>
+
+ </tr>
+ <tr>
+  {% for task in task %}
+		{% if task.status == 0  %}
+		  <td>{{ task.id }}</td>
+			<td>{{ task.task }}</td>
+			<td>{{ task.created_on.day }} / {{ task.created_on.month }} /{{ task.created_on.year }}</td>
+			<td><a href="/update/{{ task.id }}">Update</a></td>
+			<td><a href="/delete/{{ task.id }}">Delete</a></td>
+			<td><a href="/undone/{{ task.id }}">Undone</a></td>
+	</tr>
+		{% endif %}
+	{% endfor %}
+ </table>
+
+{% endblock %}

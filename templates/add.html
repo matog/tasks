@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+Sign Up
+{% endblock %}
+{% block content %}
+<h1>Add tasks</h1>
+<div class="form-group">
+<form method="post" action="{{ url_for('add_task') }}">
+	<p><input name="task" type="text"></p>
+	<p><input name="dead_line" type="date" value = {{ date }}></p>
+	<input type="submit" value="Add">
+</form>
+</div>
+
+{% endblock %}

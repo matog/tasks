@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+Task List
+{% endblock %}
+{% block content %}
+<div class="w-50 p-3 text-center">
+<h1>Please login</h1>
+     <br>
+     <form action="" method="post" class="form-signin">
+       <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+       <label for="inputEmail" class="sr-only">Email address</label>
+       <input type="text" placeholder="Username" class="form-control" name="username" value="{{ request.form.username }}">
+       <label for="inputPassword" class="sr-only">Password</label>
+       <input type="password" placeholder="Password" class="form-control" name="password" value="{{
+         request.form.password }}">
+         <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+        </form>
+     {% if error %}
+       <p class="error"><strong>Error:</strong> {{ error }}
+     {% endif %}
+  </div>
+{% endblock %}
